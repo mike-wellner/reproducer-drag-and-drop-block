@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "cli": {
+    "cache": {
+      "enabled": false
+    }
+  },
+  "projects": {
+    "reproducer-electron-dd": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/reproducer-electron-dd",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "styles": [],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "./webpack.extra.js"
+            }
+          },
+          "configurations": {
+            "development": {
+              "aot": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "reproducer-electron-dd:build:development"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "reproducer-electron-dd"
+}
