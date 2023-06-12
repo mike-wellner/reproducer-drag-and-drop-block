@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   }
 
   getSrc() {
-    return this.sanitizer.bypassSecurityTrustUrl('test-protocol://' + join(this.appPath, 'test.jpg') + '?time=' + new Date().toLocaleTimeString());
+    // Create url with custom protocol
+    // Attach time to force reloading
+    return this.sanitizer.bypassSecurityTrustUrl('test-protocol://' + join(this.appPath, 'test.jpg') + '?time=' + new Date().toLocaleTimeString().replace(':', '-'));
   }
 }
