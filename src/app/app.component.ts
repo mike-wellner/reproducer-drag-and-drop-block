@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ipcRenderer } from 'electron';
 import { join } from 'path';
@@ -13,14 +13,19 @@ export class AppComponent implements OnInit {
   appPath = '';
   showImage = true;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private changeDetector: ChangeDetectorRef,
+  ) {}
 
   async ngOnInit() {
     this.appPath = await ipcRenderer.invoke('get-app-path') as string;
-    setInterval( () => { 
-        console.log(this.showImage ? "Hide image" : "Show image");
-        this.showImage = !this.showImage; 
-    }, 2000);
+
+    ipcRenderer.on('toggle-image', () => {
+      console.log(this.showImage ? "Hide image" : "Show image");
+      this.showImage = !this.showImage; 
+      this.changeDetector.detectChanges();
+    });
   }
 
   async onDragStart() {

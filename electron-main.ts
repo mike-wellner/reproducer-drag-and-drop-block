@@ -40,7 +40,7 @@ async function createWindow() {
   
   ipcMain.handle('on-drag-start', (event: Electron.IpcMainInvokeEvent, filepath: string) => {
     console.log('on-drag-start');
-    event.sender.startDrag({ file: filepath, icon: join(app.getAppPath(), 'favicon.png') });
+    win.webContents.startDrag({ file: filepath, icon: join(app.getAppPath(), 'favicon.png') });
   });
   
   protocol.handle('test-protocol', testProtocolRequest);
@@ -59,6 +59,11 @@ async function createWindow() {
 
   await win.loadURL('http://127.0.0.1:4200');
   win.on('closed', function () { win = null })
+
+  setInterval( () => { 
+    console.log('Sending toggle request');
+    win.webContents.send('toggle-image');   
+  }, 2000);
 }
 
 

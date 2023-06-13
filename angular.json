@@ -8,7 +8,7 @@
     }
   },
   "projects": {
-    "reproducer-electron-dd": {
+    "reproducer-drag-and-drop-block": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/reproducer-electron-dd",
+            "outputPath": "dist/reproducer-drag-and-drop-block",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -36,11 +36,11 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "reproducer-electron-dd:build:development"
+            "browserTarget": "reproducer-drag-and-drop-block:build:development"
           }
         }
       }
     }
   },
-  "defaultProject": "reproducer-electron-dd"
+  "defaultProject": "reproducer-drag-and-drop-block"
 }

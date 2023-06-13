@@ -1,5 +1,5 @@
 {
-  "name": "reproducer-electron-dd",
+  "name": "reproducer-drag-and-drop-block",
   "main": "electron-main.js",
   "scripts": {
     "ng": "ng",
