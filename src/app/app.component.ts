@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ipcRenderer } from 'electron';
 import { join } from 'path';
+import { URL } from 'url';
 
 @Component({
   selector: 'app-root',
@@ -33,8 +34,10 @@ export class AppComponent implements OnInit {
   }
 
   getSrc() {
-    // Create url with custom protocol
-    // Attach time to force reloading
-    return this.sanitizer.bypassSecurityTrustUrl('test-protocol://' + join(this.appPath, 'test.jpg') + '?time=' + new Date().toLocaleTimeString().replace(':', '-'));
+    // Create url with custom protocol and attach date to force reloading
+    const url = new URL(join('file://', this.appPath, 'test.jpg'));
+    const customUrl = new URL(url.toString().replace(/^file:/, 'test-protocol:'));
+    customUrl.searchParams.set('t', Date.now().toString());
+    return this.sanitizer.bypassSecurityTrustUrl(customUrl.href);
   }
 }
