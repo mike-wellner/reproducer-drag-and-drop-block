@@ -11,8 +11,8 @@ let win;
  */
 async function testProtocolRequest(request) {
 
-  console.log('test-protocol request');
-
+  console.log(`Process.type: ${process.type}, test-protocol request`);
+  
   try {
     const fileUri = request.url.replace(/^.*?:/, 'file:');
     const path = fileURLToPath(fileUri);
@@ -61,7 +61,7 @@ async function createWindow() {
   win.on('closed', function () { win = null })
 
   setInterval( () => { 
-    console.log('Sending toggle request');
+    console.log(`Process.type: ${process.type}, Sending toggle request`);
     win.webContents.send('toggle-image');   
   }, 2000);
 }

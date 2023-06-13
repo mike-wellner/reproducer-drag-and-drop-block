@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this.appPath = await ipcRenderer.invoke('get-app-path') as string;
 
     ipcRenderer.on('toggle-image', () => {
-      console.log(this.showImage ? "Hide image" : "Show image");
+      console.log(`Process.type: ${process.type}, ${this.showImage ? "Hide image" : "Show image"}`);
       this.showImage = !this.showImage; 
       this.changeDetector.detectChanges();
     });
