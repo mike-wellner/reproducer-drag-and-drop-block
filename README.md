@@ -11,4 +11,11 @@ npm start
 
 // Run app
 npm run show
+
+// Reproduce behaviour
+* Drag image when shown
+* Hold on to the image for some seconds
+* Drop image
+
+
 ```
